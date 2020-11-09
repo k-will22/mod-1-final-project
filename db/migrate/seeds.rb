@@ -19,7 +19,7 @@ options = {
 @playback = AudioPlayback.play("app/models/audio/Viva.m4a", options)
 
 # Play in the foreground
-@playback.block
+@playback.block 
 =======
 Song.destroy_all
 Playlist.destroy_all
@@ -36,3 +36,5 @@ User.destroy_all
 
 
 >>>>>>> b5f99306086b50f2ea3ec174c645e3a4d50b6dbd
+
+
