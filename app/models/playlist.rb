@@ -1,2 +1,2 @@
-class Playlist
+class Playlist ActiveRecord::Base
 end

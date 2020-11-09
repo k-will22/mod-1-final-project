@@ -1,2 +1,2 @@
-class AddSongToPlaylist
+class AddSongToPlaylist ActiveRecord::Base
 end
