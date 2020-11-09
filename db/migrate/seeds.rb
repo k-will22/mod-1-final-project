@@ -2,10 +2,18 @@
 require 'pry'
 require 'rest-client' # in order to make HTTP requests from a ruby file
 require 'json'
-require 'rspotify'
 
-require 'rspotify/oauth'
-RSpotify::authenticate(<ff16b4171f2f48648f3599f8b62e3352>, <461882da8e854ca89071d7c02f98ef36>)
+Song.destroy_all
+Playlist.destroy_all
+User.destroy_all
 
+
+
+# t.text :song_name
+# t.string :artist_name
+# t.integer :song_id
+# t.integer :artist_id
+# t.text :song_length
+# t.string :genre
 
 
