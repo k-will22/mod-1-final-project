@@ -14,14 +14,13 @@ class CLI
         puts @@artii.asciify("myousic")
         puts @@artii.asciify("time")
         self.auth_sequence
-    end
 
-end 
+    end
+ 
 
     def auth_sequence
         sleep(1.5)
         @@user = User.first
-        self.display_menu
         choices = { "Log In" => 1,
             "Sign Up" => 2
         }
@@ -41,6 +40,13 @@ end
                 self.auth_sequence
             end
         end
+    end
+
+    def self.user=(user)
+        @@user = user
+    end
+
+    def signup
     end
 
 def display_menu
@@ -106,5 +112,6 @@ def playlist_country
     # end.sum
     # puts "You scored #{total}!"
     # Game.create(user_id: @@user.id, category_id: category_id, score: total, total_possible: possible)
+end
 end
 
