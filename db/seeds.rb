@@ -5,7 +5,7 @@ Playlist.destroy_all
 User.destroy_all
 
 sara = User.create(username: "sara")
-emina = User.create(username: "emina")
+mina = User.create(username: "emina")
 tarik = User.create(username: "tarik")
 sammy = User.create(username: "sammy")
 keith = User.create(username: "keith")
@@ -59,7 +59,7 @@ virus = Song.create(song_name: "virus", artist_name: "martin garrix", song_id: "
 play_hard = Song.create(song_name: "play hard", artist_name: "krewella", song_id: "", artist_id: "", song_length: "", genre: "edm")
 dont_you_worry_child = Song.create(song_name: "dont you worry child", artist_name: "swedish house mafia", song_id: "", artist_id: "", song_length: "", genre: "edm")
 stars = Song.create(song_name: "stars", artist_name: "marshmello", song_id: "", artist_id: "", song_length: "", genre: "edm")
-only_now = Song.create(song_name: "only_now", artist_name: "seven lions", song_id: "", artist_id: "", song_length: "", genre: "edm")
+only_now = Song.create(song_name: "only now", artist_name: "seven lions", song_id: "", artist_id: "", song_length: "", genre: "edm")
 saving_light = Song.create(song_name: "saving light", artist_name: "gareth emery", song_id: "", artist_id: "", song_length: "", genre: "edm")
 drowning = Song.create(song_name: "drowning", artist_name: "armin van buuran", song_id: "", artist_id: "", song_length: "", genre: "edm")
 

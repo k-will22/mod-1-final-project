@@ -2,8 +2,12 @@ require "tty-prompt"
 require "pry"
 # require 'rest-client'  
 
+       
+
 
 class CLI ## class for 
+    attr_accessor :username
+
     @@prompt = TTY::Prompt.new
     @@artii = Artii::Base.new :font => 'slant'
     @@user = nil
@@ -11,9 +15,9 @@ class CLI ## class for
 
     def start #opening title
         system('clear')
-        puts @@artii.asciify("it's")
+        puts @@artii.asciify("!it's")
         puts @@artii.asciify("MYOUSIC")
-        puts @@artii.asciify("time")
+        puts @@artii.asciify("time!")
         self.welcome
         self.menu
 
@@ -37,82 +41,87 @@ class CLI ## class for
         end
             if display_menu == "Returning Listener"
                 system("clear")
-                CLI.login
+                self.login
             elsif display_menu == "New Listener"
                 system("clear")
-                CLI.create_account
-            
-        # c = { "Log In" => 1, ##### OLD STUFF!!!!!###### trying something new 
-        #     "Sign Up" => 2
-        # }
-    #     choice = @@prompt.select("Would you like to sign up or log in?", choices)
-    #     if choice == 1
-    #         @@user = User.login
-    #         if @@user
-    #             self.display_menu
-    #         else
-    #             self.playlist_menu
-    #         end
-    #     else
-    #         @@user = User.signup
-    #         if @@user
-    #             self.playlist_menu
-    #         else
-    #             self.auth_sequence
-    #         end
-    #     end
-    # end
+                self.new_account
+            end
+        end
 
-    # def login ##THIS WILL BE THE LOGIN
-    #     prompt = TTY::Prompt.new
-    #     puts "Welcome back, music-fiend!"
-    #     username = prompt.ask("What is your name?")
-    #     if User.find_by(username: username)
-    #         @user = Use.find_by(username: username)
-    #         @user
-    #      CLI.display_menu
-    #     elsif
-    #         system("clear")
-    #         never_met_you = prompt.select("Username or Password not found.") do |menu|
-    #             menu.choice "Log In"
-    #             menu.choice "Create an Account"
-    #             system("clear")
-    #         end
-    #      end 
-    #      if never_met_you == "Log In"
-    #          system("clear")
-    #          CLI.login
-    #      elsif never_met_you == "Create an Account"
-    #          system("clear")
-    #          CLI.create_account
-    #      end
+        def login
+            prompt = TTY::Prompt.new
+            puts "Welcome back, music fiend!"
+            username = prompt.ask ("What is your name?")
+                if User.find_by(username: username)
+                    @user = User.find_by(username: username)
+                    @user
+                self.playlist_menu
+            elsif
+                system("clear")
+                who_are_you = prompt.select("Uh... we don't know you.") do |menu|
+                    menu.choice "Let me try again."
+                    menu.choice "Actually, let me create an account."
+                    system("clear")
+                end
+            end
+            if who_are_you == "Let me try again."
+                system("clear")
+                self.login
+            elsif who_are_you == "Actually, let me create an account."
+                system("clear")
+                self.new_account
+            end
+
+        end
+
+        def new_account ##how to create a new account
+            prompt = TTY::Prompt.new
+            puts "Thanks for joining us!"
+            username = prompt.ask("What would you like us to remember you by?")
+            new_user = User.create(username: username)
+            sleep(0.5)
+            @user = User.all.find_by(username: username)
+            @user
+            self.playlist_menu
+        end
+ 
+
+    
+
+def playlist_menu ##playlist menus!! 
+    prompt = TTY::Prompt.new
+    music_menu = prompt.select ("Hello, what are you in the mood for today?") do |menu|
+            menu.choice "Pop"
+            menu.choice "Rock"
+            menu.choice "Rap"
+            menu.choice "Country"
+            menu.choice "EDM"
+            menu.choice "Never mind, take me back to login page!"
+        end
+        if music_menu == "Pop"
+            system("clear")
+            self.pop_playlist
+        elsif music_menu == "Rock"
+            system("clear")
+            self.rock_playlist
+        elsif music_menu == "Rap"
+            system("clear")
+            self.rap_playlist
+        elsif music_menu == "Country"
+            system("clear")
+            self.country_playlist
+        elsif music_menu == "EDM"
+            system("clear")
+            self.edm_playlist
+        elsif music_menu == "Never mind, take me back to login page!"
+            system("clear")
+            self.menu
+        end
     end
+            
 
-    # def signup
-    # end
 
-# def playlist_menu #THESE WILL BE THE PLAYLIST MENUS
-#     # Displays the options to the user!
-#     system('clear')
-#     choices = { "Pop" => 1,
-#             "Rock" => 2, 
-#             "Rap" => 3,
-#             "Country" => 4,
-#         }
-#     action = @@prompt.select("Choose a playlist", choices)
-#     case action
-#     when 1 
-#         self.playlist_pop # plays a pop playlist!
-#     when 2
-#         self.playlist_rock # plays a rock playlist!
-#     when 3
-#         self.playlist_rap # plays a rap playlist!
-#     when 4
-#         self.playlist_country # plays a country playlist!
-#     end
-# end
-
-#def playlist_pop
+#def pop_playlist
     # currently only shows 2 quesions in order to get the get the total possible score and
     # display the questions and get actual scores 
     # possible = category_data["clues"].slice(0,2).sum { |clue| clue["value"] }
@@ -123,7 +132,7 @@ class CLI ## class for
     # Game.create(user_id: @@user.id, category_id: category_id, score: total, total_possible: possible)
 #end
 
-#def playlist_rock
+#def rock_playlist
     # currently only shows 2 quesions in order to get the get the total possible score and
     # display the questions and get actual scores 
     # possible = category_data["clues"].slice(0,2).sum { |clue| clue["value"] }
@@ -134,7 +143,7 @@ class CLI ## class for
     # Game.create(user_id: @@user.id, category_id: category_id, score: total, total_possible: possible)
 #end
 
-#def playlist_rap
+#def rap_playlist
     # currently only shows 2 quesions in order to get the get the total possible score and
     # display the questions and get actual scores 
     # possible = category_data["clues"].slice(0,2).sum { |clue| clue["value"] }
@@ -145,7 +154,7 @@ class CLI ## class for
     # Game.create(user_id: @@user.id, category_id: category_id, score: total, total_possible: possible)
 #end
 
-#def playlist_country
+#def country_playlist
     # currently only shows 2 quesions in order to get the get the total possible score and
     # display the questions and get actual scores 
     # possible = category_data["clues"].slice(0,2).sum { |clue| clue["value"] }
@@ -157,3 +166,4 @@ class CLI ## class for
 #end
 end
 
+  
