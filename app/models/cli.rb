@@ -15,9 +15,9 @@ class CLI ## class for
 
     def start #opening title
         system('clear')
-        puts @@artii.asciify("!it's")
-        puts @@artii.asciify("MYOUSIC")
-        puts @@artii.asciify("time!")
+        puts @@artii.asciify("!    it's")
+        puts @@artii.asciify("M Y O U S I C ")
+        puts @@artii.asciify("time     !")
         self.welcome
         self.menu
 
@@ -35,17 +35,21 @@ class CLI ## class for
         sleep(1)
         @@user = User.first
         puts "Before we get you started..."
-        display_menu = prompt.select ("are you a new or returning listener?") do |menu|
+        welcome_menu = prompt.select ("are you a new or returning listener?") do |menu|
             menu.choice "Returning Listener"
             menu.choice "New Listener"
+            menu.choice "Exit"
         end
-            if display_menu == "Returning Listener"
+            if welcome_menu == "Returning Listener"
                 system("clear")
                 self.login
-            elsif display_menu == "New Listener"
+            elsif welcome_menu == "New Listener"
                 system("clear")
                 self.new_account
-            end
+            elsif welcome_menu == "Exit"
+                system("clear")
+                exit!
+            end    
         end
 
         def login
@@ -53,7 +57,7 @@ class CLI ## class for
             puts "Welcome back, music fiend!"
             username = prompt.ask ("What is your name?")
                 if User.find_by(username: username)
-                    @user = User.find_by(username: username)
+                    @user = User.find_by(username: username.downcase!)
                     @user
                 self.playlist_menu
             elsif
@@ -90,35 +94,125 @@ class CLI ## class for
 
 def playlist_menu ##playlist menus!! 
     prompt = TTY::Prompt.new
-    music_menu = prompt.select ("Hello, what are you in the mood for today?") do |menu|
-            menu.choice "Pop"
-            menu.choice "Rock"
-            menu.choice "Rap"
-            menu.choice "Country"
-            menu.choice "EDM"
+    music_menu = prompt.select ("Hey! What are you in the mood for today?") do |menu|
+            menu.choice "Pop 1"
+            menu.choice "Pop 2"
+            menu.choice "Rock 1"
+            menu.choice "Rock 2"
+            menu.choice "Rap 1"
+            menu.choice "Rap 2"
+            menu.choice "Country 1"
+            menu.choice "Country 2"
+            menu.choice "EDM 1"
+            menu.choice "EDM 2"
             menu.choice "Never mind, take me back to login page!"
         end
-        if music_menu == "Pop"
+        if music_menu == "Pop 1"
             system("clear")
-            self.pop_playlist
-        elsif music_menu == "Rock"
+            self.pop_playlist_1
+        elsif music_menu == "Pop 2"
+                system("clear")
+                self.pop_playlist_2
+        elsif music_menu == "Rock 1"
             system("clear")
-            self.rock_playlist
-        elsif music_menu == "Rap"
+            self.rock_playlist_1
+        elsif music_menu == "Rock 2"
             system("clear")
-            self.rap_playlist
-        elsif music_menu == "Country"
+            self.rock_playlist_2
+        elsif music_menu == "Rap 1"
             system("clear")
-            self.country_playlist
-        elsif music_menu == "EDM"
+            self.rap_playlist_1
+        elsif music_menu == "Rap 2"
             system("clear")
-            self.edm_playlist
+            self.rap_playlist_2
+        elsif music_menu == "Country 1"
+            system("clear")
+            self.country_playlist_1
+        elsif music_menu == "Country 2"
+            system("clear")
+            self.country_playlist_2
+        elsif music_menu == "EDM 1"
+            system("clear")
+            self.edm_playlist_1
+        elsif music_menu == "EDM 2"
+            system("clear")
+            self.edm_playlist_2
         elsif music_menu == "Never mind, take me back to login page!"
             system("clear")
             self.menu
         end
     end
+
+    def pop_playlist_1
+        system("clear")
+        puts "You've chosen Pop Playlist 1!"
+        puts "Now playing..."
+        sleep(1)
+    end
             
+
+    def pop_playlist_2
+        system("clear")
+        puts "You've chosen Pop Playlist 2!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def rock_playlist_1
+        system("clear")
+        puts "You've chosen Rock Playlist 1!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def ock_playlist_2
+        system("clear")
+        puts "You've chosen Rock Playlist 2!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def rap_playlist_1
+        system("clear")
+        puts "You've chosen Rap Playlist 1!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def rap_playlist_2
+        system("clear")
+        puts "You've chosen Rap Playlist 2!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def country_playlist_1
+        system("clear")
+        puts "You've chosen Country Playlist 1!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def country_playlist_2
+        system("clear")
+        puts "You've chosen Country Playlist 2!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def edm_playlist_1
+        system("clear")
+        puts "You've chosen EDM Playlist 1!"
+        puts "Now playing..."
+        sleep(1)
+    end
+
+    def edm_playlist_2
+        system("clear")
+        puts "You've chosen EDM Playlist 2!"
+        puts "Now playing..."
+        sleep(1)
+    end
 
 
 #def pop_playlist
