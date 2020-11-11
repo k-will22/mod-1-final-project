@@ -7,6 +7,6 @@ puts "hello world"
 
 cli = CLI.new
 
-cli.welcome
+cli.start
 
 # binding.pry
