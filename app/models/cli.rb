@@ -184,10 +184,11 @@ def playlist_menu ##playlist menus!!
             menu.choice "Diamonds - Rihanna"
             menu.choice "Shake it Off - Taylor Swift"
             menu.choice "Back to Playlist Menu"
+
+        end
         music = Music.new('./app/models/audio/Lights.mp3') 
         music.play 
         music.volume = 50
-        end
              if pop1_menu == "Back to Playlist Menu"
                 system("clear")
              end

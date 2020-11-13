@@ -9,6 +9,6 @@ Myousic is an app where users can search for music through playlists, playback m
 
 1. Clone the repository
 2. Run bundle install
-3. Run ruby bun/run.rb
+3. Run ruby bin/run.rb
 4. Use up and down arrow keys to scroll through menu and playlists
 5. Enter key selects song in playlist to start playback
