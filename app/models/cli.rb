@@ -8,25 +8,25 @@ require "ruby2d"
 
 
 class CLI ## class for 
-    attr_accessor :username
+    attr_accessor :username, :playlists, :songs
 
     @@prompt = TTY::Prompt.new
-    @@artii = Artii::Base.new :font => 'isometric3'
+    @@artii = Artii::Base.new :font => 'drpepper' #drpepper
     @@user = nil
 
 
     def start #opening title
         system('clear')
-        puts @@artii.asciify("!    it's")
-        puts @@artii.asciify("M Y O U S I C ")
-        puts @@artii.asciify("time     !")
+        puts @@artii.asciify("    it's")
+        puts @@artii.asciify("MYOUSIC ")
+        puts @@artii.asciify("time !")
         self.welcome
     end
  
 
     def welcome #welcome sentence and menu prompt 
         sleep(0.5)
-        puts "WELCOME TO MYOUSIC!"
+        puts "🎸💿WELCOME TO MYOUSIC!💿🎸"
         self.menu
     end
 
@@ -36,25 +36,26 @@ class CLI ## class for
         @@user = User.first
         puts "Before we get you started..."
         welcome_menu = prompt.select ("are you a new or returning listener?") do |menu|
-            menu.choice "Returning Listener"
-            menu.choice "New Listener"
-            menu.choice "Exit"
+            menu.choice "Returning Listener 👵🏼"
+            menu.choice "New Listener 👶🏼"
+            menu.choice "Exit ❌"
         end
-            if welcome_menu == "Returning Listener"
+            if welcome_menu == "Returning Listener 👵🏼"
                 system("clear")
                 self.login
-            elsif welcome_menu == "New Listener"
+            elsif welcome_menu == "New Listener 👶🏼"
                 system("clear")
                 self.new_account
-            elsif welcome_menu == "Exit"
+            elsif welcome_menu == "Exit ❌"
                 system("clear")
-                exit!
-            end    
+                # exit!
+            end 
+            exit!   
         end
 
         def login
             prompt = TTY::Prompt.new
-            puts "Welcome back, music fiend!"
+            puts "👋🏼 Welcome back, music fiend! 🔊🔊"
             username = prompt.ask ("What is your name?")
                 if User.find_by(username: username)
                     @user = User.find_by(username: username.downcase!)
@@ -62,7 +63,7 @@ class CLI ## class for
                 self.playlist_menu
             elsif
                 system("clear")
-                who_are_you = prompt.select("Uh... we don't know you.") do |menu|
+                who_are_you = prompt.select("Uh... we don't know you. 👎 ") do |menu|
                     menu.choice "Let me try again."
                     menu.choice "Actually, let me create an account."
                     system("clear")
@@ -81,7 +82,7 @@ class CLI ## class for
         def new_account ##how to create a new account
             prompt = TTY::Prompt.new
             puts "Thanks for joining us!"
-            username = prompt.ask("What would you like us to remember you by?")
+            username = prompt.ask("What would you like us to remember you by? ")
             new_user = User.create(username: username)
             sleep(0.5)
             @user = User.all.find_by(username: username)
@@ -89,17 +90,30 @@ class CLI ## class for
             self.playlist_menu
         end
 
-        def create_playlist
+        def create_playlist #creating a new playlist
             prompt = TTY::Prompt.new
             puts "Create your new playlist here!"
-            playlist = prompt.ask("What songs do you want to add to your playlist?")
-            new_playlist = Playlist.create(playlists: playlistname, songs: songs)
-            sleep(0.5)
-            @playlist = Playlist.all.find_by(playlist: (playlistname))
-            @playlist
-            playlist_menu << @playlist
+            playlist = prompt.ask("What do you want to name your new playlist? 🎹")
+            # new_playlist = Playlist.create(playlists: playlist)
+            # sleep(0.5)
+            # @playlist = Playlist.all.find_by(playlists: playlist)
+            # @playlist
+            # playlist_menu << @playlist
+            self.add_songs
     
         end
+
+        def add_songs
+            prompt = TTY::Prompt.new
+            puts "Adding songs!"
+            playlist = prompt.ask("What songs do you want to add to your playlist? 🎶")
+            # new_songs = Song.new(songs: song)
+            # @song = Song.all.find_by(songs: song)
+            # @song
+            system("clear")
+            self.playlist_menu
+        end
+
  
 
     
