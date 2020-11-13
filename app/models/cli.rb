@@ -11,7 +11,7 @@ class CLI ## class for
     attr_accessor :username
 
     @@prompt = TTY::Prompt.new
-    @@artii = Artii::Base.new :font => 'starwars'
+    @@artii = Artii::Base.new :font => 'isometric3'
     @@user = nil
 
 
