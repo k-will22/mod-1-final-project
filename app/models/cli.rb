@@ -2,6 +2,8 @@ require "tty-prompt"
 require "pry"
 # require 'rest-client'  
 
+require "ruby2d"
+
        
 
 
@@ -9,7 +11,7 @@ class CLI ## class for
     attr_accessor :username
 
     @@prompt = TTY::Prompt.new
-    @@artii = Artii::Base.new :font => 'slant'
+    @@artii = Artii::Base.new :font => 'starwars'
     @@user = nil
 
 
@@ -19,8 +21,6 @@ class CLI ## class for
         puts @@artii.asciify("M Y O U S I C ")
         puts @@artii.asciify("time     !")
         self.welcome
-       
-
     end
  
 
@@ -170,10 +170,10 @@ def playlist_menu ##playlist menus!!
             menu.choice "Diamonds - Rihanna"
             menu.choice "Shake it Off - Taylor Swift"
             menu.choice "Back to Playlist Menu"
-        end
         music = Music.new('./app/models/audio/Lights.mp3') 
         music.play 
         music.volume = 50
+        end
              if pop1_menu == "Back to Playlist Menu"
                 system("clear")
              end
@@ -212,7 +212,7 @@ def playlist_menu ##playlist menus!!
         menu.choice "Today - Smashing Pumpkins"
         menu.choice "Machinehead - Bush"
         menu.choice "Say It Ain't So - Weezer"
-        menu.choice "Dammit - Blink-182"
+        menu.choice "Lucky Denver Mind - Jimmie Eat World"
         menu.choice "Creep - Radiohead"
         menu.choice "Back to Playlist Menu"
         end
@@ -231,7 +231,7 @@ def playlist_menu ##playlist menus!!
         system("clear")
         sleep(1)
         rock2_menu = prompt.select ("You've chosen Rock Playlist 2! Now Playing...") do |menu|
-        menu.choice "Lucky Denver Mind - Jimmie Eat World"
+        menu.choice "Dammit - Blink-182"
         menu.choice "Follow You Down - Gin Blossoms"
         menu.choice "Far Behind - Candlebox"
         menu.choice "Mr. Jones - Counting Crows"
@@ -252,7 +252,7 @@ def playlist_menu ##playlist menus!!
         system("clear")
         sleep(1)
         rap1_menu = prompt.select ("You've chosen Rap Playlist 1! Now Playing...") do |menu|
-        menu.choice "Thug Luv - Bone Thugs-n-Harmony"
+        menu.choice "On Fire - Lloyd Banks"
         menu.choice "Murder Ink - Dr. Dre"
         menu.choice "Keep Talkin' - D12"
         menu.choice "Hypnotize - Notorious B.I.G."
@@ -274,7 +274,7 @@ def playlist_menu ##playlist menus!!
         sleep(1)
         rap2_menu = prompt.select ("You've chosen Rap Playlist 2! Now Playing...") do |menu|
         menu.choice "No Flex Zone - Rae Sremmurd"
-        menu.choice "On Fire - Lloyd Banks"
+        menu.choice "Thug Luv - Bone Thugs-n-Harmony"
         menu.choice "Lucid Dreams - Juice WRLD"
         menu.choice "Forever - Drake"
         menu.choice "Back to Playlist Menu"
