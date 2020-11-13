@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_221140) do
+ActiveRecord::Schema.define(version: 2020_11_12_205143) do
 
-  create_table "addsongstoplaylists", force: :cascade do |t|
+  create_table "add_songs_to_playlist", force: :cascade do |t|
+    t.integer "song_id"
+    t.integer "playlist_id"
+  end
+
+  create_table "add_songs_to_playlists", force: :cascade do |t|
     t.integer "song_id"
     t.integer "playlist_id"
   end
